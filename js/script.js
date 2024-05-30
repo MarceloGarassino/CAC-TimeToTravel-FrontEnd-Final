@@ -49,6 +49,7 @@ function miFunction() {
         sessionStorage.getItem("usuarioEnLinea");
     }
 
+   
     manejarErrores("usuario", "errUsr", esValido);                      //se llama a la funcion manejar errores, donde se pasa el id , id del mensaje de error y la variable esValido
     manejarErrores("contrasena", "errPsw", esValidPsw);
 
@@ -120,10 +121,22 @@ function boolstr(val) {
     }
 }
 
+
+function resetAnimacion(element) {
+    
+    var el = document.getElementById(element);
+    el.style.animation = 'none';
+    el.offsetHeight; /* trigger reflow */
+    el.style.animation = null;
+    return; 
+  }
+
 //funcion para manejar los errores
 function manejarErrores(elementId, errorId, esValido) {
     const element = document.getElementById(elementId);
     const errorElement = document.getElementById(errorId);
+    
+    resetAnimacion(elementId);
 
     if (!esValido) {                                                                     //si la variable esValido es falso muestro las alertas rojas
         errorElement.style.display = "block";
